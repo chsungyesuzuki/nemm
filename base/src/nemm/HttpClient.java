@@ -1,0 +1,70 @@
+package nemm;
+
+import nemm.httpexception.No200Exception;
+
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpHeaders;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class HttpClient {
+    public long cookie;
+    private java.net.http.HttpClient client;
+
+    HttpClient (java.net.http.HttpClient client) {
+        this.client = client;
+    }
+
+    public BufferedReader runCommand(String cmd) {
+        try {
+            if(cookie==0){
+                cookie=System.currentTimeMillis();
+            }
+            File ifile = new File("D:/temp/"+String.valueOf(cookie));
+            cmd = "http://localhost:3000/" + cmd;
+            var playlist = new URI(cmd);
+            var rBuilder = HttpRequest.newBuilder(playlist);
+            rBuilder.GET();
+            rBuilder.timeout(Duration.ofSeconds(15));
+            rBuilder.version(java.net.http.HttpClient.Version.HTTP_1_1);
+            if(ifile.exists()){
+                BufferedReader rer = new BufferedReader(new FileReader(ifile));
+                while(true){
+                    String line = rer.readLine();
+                    if(line==null)break;
+                    rBuilder.header("cookie", line);
+                }
+            }
+            var request = rBuilder.build();
+            var bodyType = HttpResponse.BodyHandlers.ofInputStream();
+            var response = client.send(request, bodyType);
+            int statusCode = response.statusCode();
+            if (statusCode == 200) {
+                HttpHeaders headers = response.headers();
+                var headersMap = headers.map();
+                if(headersMap.containsKey("set-cookie")) {
+                    var list = headersMap.get("set-cookie");
+                    if (!ifile.exists()) {
+                        ifile.createNewFile();
+                    }
+                    Writer qwq = new FileWriter(ifile);
+                    for (String i : list) {
+                        qwq.write(i + "\n");
+                    }
+                    qwq.close();
+                }
+                return new BufferedReader(new InputStreamReader(response.body()));
+            }
+            else {
+                throw new No200Exception(response);
+            }
+        }
+        catch (URISyntaxException | InterruptedException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
