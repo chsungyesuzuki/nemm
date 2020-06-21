@@ -10,20 +10,36 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
+/**
+ * an http client.
+ * @version 0.0.0
+ * @since 0.0.0
+ * @author chsungyesuzuki
+ */
 public class HttpClient {
+    /**
+     * the name of cookie.
+     * @since 0.0.0
+     */
     public long cookie;
-    private java.net.http.HttpClient client;
+    private final java.net.http.HttpClient client;
 
     HttpClient (java.net.http.HttpClient client) {
         this.client = client;
     }
 
+    /**
+     * run command.
+     * @since 0.0.0
+     * @param cmd cmd.
+     * @return a buffered reader of the response body.
+     */
     public BufferedReader runCommand(String cmd) {
         try {
             if(cookie==0){
                 cookie=System.currentTimeMillis();
             }
-            File ifile = new File("D:/temp/"+String.valueOf(cookie));
+            File ifile = new File("D:/temp/"+ cookie);
             cmd = "http://localhost:3000/" + cmd;
             var playlist = new URI(cmd);
             var rBuilder = HttpRequest.newBuilder(playlist);

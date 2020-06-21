@@ -15,7 +15,18 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.time.Duration;
 
+/**
+ * fork feature.
+ * @version 0.0.0
+ * @since 0.0.0
+ * @author chsungyesuzuki
+ */
 public final class Fork {
+    /**
+     * implementation.
+     * @since 0.0.0
+     * @param splittedCmd splitted cmd.
+     */
     public static void execute(String[] splittedCmd) {
         if(splittedCmd.length != 3 && splittedCmd.length != 4) {
             throw new IllegalArgumentException("The correct grammar of \"fork\" is: \"fork from to [description]\"");

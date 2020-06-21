@@ -1,13 +1,30 @@
 package nemm;
 
 import nemm.feature.Fork;
+import nemm.feature.Help;
 import nemm.feature.Login;
 
 import java.time.Duration;
 import java.util.Scanner;
 
+/**
+ * Nothing to say.
+ * @version 0.0.0
+ * @since 0.0.0
+ * @author chsungyesuzuki
+ */
 public class Main {
+    /**
+     * The http client the program uses.
+     * @since 0.0.0
+     */
     public static HttpClient client;
+
+    /**
+     * nothing to say.
+     * @param args nothing to say.
+     * @since 0.0.0
+     */
     public static void main(String[] args) {
         var cBuilder = java.net.http.HttpClient.newBuilder();
         cBuilder.connectTimeout(Duration.ofSeconds(15));
@@ -25,7 +42,8 @@ public class Main {
                 Login.execute(splittedCmd);
                 break;
             case "help":
-
+                Help.execute(splittedCmd);
+                break;
             default:
                 throw new IllegalArgumentException("Type help to see help.");
         }
