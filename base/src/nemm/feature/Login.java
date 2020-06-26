@@ -10,13 +10,13 @@ import java.io.Console;
  * @since 0.0.0
  * @author chsungyesuzuki
  */
-public class Login {
+public class Login implements Feature{
     /**
      * implementation.
      * @since 0.0.0
      * @param splittedCmd splitted cmd.
      */
-    public static void execute(String[] splittedCmd) {
+    public void execute(String[] splittedCmd) {
         System.out.println("type in password:");
         Console console = System.console();
         String password = new String(console.readPassword());

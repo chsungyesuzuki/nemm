@@ -21,13 +21,13 @@ import java.time.Duration;
  * @since 0.0.0
  * @author chsungyesuzuki
  */
-public final class Fork {
+public final class Fork implements Feature {
     /**
      * implementation.
      * @since 0.0.0
      * @param splittedCmd splitted cmd.
      */
-    public static void execute(String[] splittedCmd) {
+    public void execute(String[] splittedCmd) {
         if(splittedCmd.length != 3 && splittedCmd.length != 4) {
             throw new IllegalArgumentException("The correct grammar of \"fork\" is: \"fork from to [description]\"");
         }

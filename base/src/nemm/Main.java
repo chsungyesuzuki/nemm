@@ -1,8 +1,6 @@
 package nemm;
 
-import nemm.feature.Fork;
-import nemm.feature.Help;
-import nemm.feature.Login;
+import nemm.feature.FeatureExecutor;
 
 import java.time.Duration;
 import java.util.Scanner;
@@ -34,18 +32,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String cmd = scanner.nextLine();
         String[] splittedCmd = cmd.split(" ");
-        switch(splittedCmd[0]) {
-            case "fork":
-                Fork.execute(splittedCmd);
-                break;
-            case "login":
-                Login.execute(splittedCmd);
-                break;
-            case "help":
-                Help.execute(splittedCmd);
-                break;
-            default:
-                throw new IllegalArgumentException("Type help to see help.");
-        }
+        FeatureExecutor.execute(splittedCmd);
     }
 }
