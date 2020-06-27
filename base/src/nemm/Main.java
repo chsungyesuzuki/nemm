@@ -30,8 +30,10 @@ public class Main {
         var client0 = cBuilder.build();
         client = new HttpClient(client0);
         Scanner scanner = new Scanner(System.in);
-        String cmd = scanner.nextLine();
-        String[] splittedCmd = cmd.split(" ");
-        FeatureExecutor.execute(splittedCmd);
+        while (true) {
+            String cmd = scanner.nextLine();
+            String[] splittedCmd = cmd.split(" ");
+            FeatureExecutor.execute(splittedCmd);
+        }
     }
 }

@@ -35,13 +35,9 @@ public final class Fork implements Feature {
         String to = splittedCmd[2];
         nemm.HttpClient client = Main.client;
         try {
-            String str = "http://localhost:3000/playlist/detail?id=" + from;
+            String str = "playlist/detail?id=" + from;
             var playlist0 = new URI(str);
             BufferedReader r0 = client.runCommand(str);
-            var rBuilder = HttpRequest.newBuilder(playlist0);
-            rBuilder.GET();
-            rBuilder.timeout(Duration.ofSeconds(15));
-            rBuilder.version(HttpClient.Version.HTTP_1_1);
             assert r0 != null;
             var element = JsonParser.parseReader(r0);
             var obj = element.getAsJsonObject();
