@@ -18,6 +18,7 @@ public class FeatureExecutor {
             case "help" -> new Help();
             case "fork" -> new Fork();
             case "login" -> new Login();
+            case "exit" -> new Exit();
             default -> throw new IllegalArgumentException();
         };
         try {
