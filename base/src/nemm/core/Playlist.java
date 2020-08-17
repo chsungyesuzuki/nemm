@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 
 /**
  * Playlist.
- * @since 1.0.1
+ * @since 1.0.2
  * @author chsungyesuzuki
  */
 public class Playlist {
@@ -21,7 +21,7 @@ public class Playlist {
      * You must provide id to get a Playlist.
      * @param id id
      * @author chsungyesuzuki
-     * @since 1.0.1
+     * @since 1.0.2
      */
     public Playlist(String id){
         this.id=id;
@@ -31,7 +31,7 @@ public class Playlist {
      * get playlist jsonObject from api
      * @return jsonObject
      * @author chsungyesuzuki
-     * @since 1.0.1
+     * @since 1.0.2
      */
     public JsonObject get(){
         HttpClient client= Main.client;
@@ -47,7 +47,7 @@ public class Playlist {
      * getSongIds
      * @return songIds
      * @author chsungyesuzuki
-     * @since 1.0.1
+     * @since 1.0.2
      */
     public String[] getTrackIds(){
         if(jsonObject==null){
