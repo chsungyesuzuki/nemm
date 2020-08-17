@@ -1,6 +1,7 @@
 package nemm;
 
 import nemm.feature.FeatureExecutor;
+import nemm.http.HttpClient;
 
 import java.time.Duration;
 import java.util.Scanner;
@@ -24,11 +25,7 @@ public class Main {
      * @since 0.0.0
      */
     public static void main(String[] args) {
-        var cBuilder = java.net.http.HttpClient.newBuilder();
-        cBuilder.connectTimeout(Duration.ofSeconds(15));
-        cBuilder.version(java.net.http.HttpClient.Version.HTTP_1_1);
-        var client0 = cBuilder.build();
-        client = new HttpClient(client0);
+        client = HttpClient.INSTANCE;
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String cmd = scanner.nextLine();

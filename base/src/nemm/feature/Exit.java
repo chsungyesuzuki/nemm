@@ -5,7 +5,7 @@ package nemm.feature;
  * @author chsungyesuzuki
  * @since 1.0.0
  */
-public class Exit implements Feature {
+public final class Exit implements Feature {
     /**
      * nts
      * @param splittedCmd nts, unused

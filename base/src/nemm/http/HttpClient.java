@@ -1,6 +1,6 @@
-package nemm;
+package nemm.http;
 
-import nemm.httpexception.No200Exception;
+import nemm.http.exception.No200Exception;
 
 import java.io.*;
 import java.net.URI;
@@ -22,9 +22,17 @@ public class HttpClient {
      * @since 0.0.0
      */
     public long cookie;
+    public static final HttpClient INSTANCE;
+    static{
+        var cBuilder = java.net.http.HttpClient.newBuilder();
+        cBuilder.connectTimeout(Duration.ofSeconds(15));
+        cBuilder.version(java.net.http.HttpClient.Version.HTTP_1_1);
+        var client0 = cBuilder.build();
+        INSTANCE=new HttpClient(client0);
+    }
     private final java.net.http.HttpClient client;
 
-    HttpClient (java.net.http.HttpClient client) {
+    private HttpClient (java.net.http.HttpClient client) {
         this.client = client;
     }
 
@@ -34,7 +42,7 @@ public class HttpClient {
      * @param cmd cmd.
      * @return a buffered reader of the response body.
      */
-    public BufferedReader runCommand(String cmd) {
+    public final BufferedReader runCommand(String cmd) {
         try {
             if(cookie==0){
                 cookie=System.currentTimeMillis();

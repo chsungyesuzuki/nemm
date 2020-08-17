@@ -1,13 +1,13 @@
 package nemm.feature;
 
-import nemm.httpexception.No200Exception;
+import nemm.http.exception.No200Exception;
 
 /**
  * Feature Executor
  * @author chsungyesuzuki
  * @since 0.0.2
  */
-public class FeatureExecutor {
+public final class FeatureExecutor {
     /**
      * nts
      * @since 0.0.2
@@ -26,6 +26,8 @@ public class FeatureExecutor {
         } catch (No200Exception e) {
             if(e.response.statusCode()==301) {
                 System.err.println("login first please!");
+            }else{
+                throw e;
             }
         }
     }

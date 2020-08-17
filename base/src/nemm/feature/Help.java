@@ -6,7 +6,7 @@ package nemm.feature;
  * @since 0.0.0
  * @author chsungyesuzuki
  */
-public class Help implements Feature{
+public final class Help implements Feature{
     /**
      * implementation.
      * @since 0.0.0

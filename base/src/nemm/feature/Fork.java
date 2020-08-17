@@ -6,7 +6,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import nemm.Main;
 import nemm.core.Playlist;
-import nemm.httpexception.No200Exception;
+import nemm.http.HttpClient;
+import nemm.http.exception.No200Exception;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,7 +30,7 @@ public final class Fork implements Feature {
         }
         String from = splittedCmd[1];
         String to = splittedCmd[2];
-        nemm.HttpClient client = Main.client;
+        HttpClient client = Main.client;
         try {
             BufferedReader reader = client.runCommand("playlist/create?name=" + to);
             assert reader != null;

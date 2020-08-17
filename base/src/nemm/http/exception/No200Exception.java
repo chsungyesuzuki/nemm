@@ -1,4 +1,4 @@
-package nemm.httpexception;
+package nemm.http.exception;
 
 import java.net.http.HttpResponse;
 

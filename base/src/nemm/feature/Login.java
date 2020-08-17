@@ -10,7 +10,7 @@ import java.io.Console;
  * @since 0.0.0
  * @author chsungyesuzuki
  */
-public class Login implements Feature{
+public final class Login implements Feature{
     /**
      * implementation.
      * @since 0.0.0

@@ -1,9 +1,8 @@
 package nemm.core;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import nemm.HttpClient;
+import nemm.http.HttpClient;
 import nemm.Main;
 
 import java.io.BufferedReader;
@@ -33,7 +32,7 @@ public class Playlist {
      * @author chsungyesuzuki
      * @since 1.0.2
      */
-    public JsonObject get(){
+    public final JsonObject get(){
         HttpClient client= Main.client;
         String str = "playlist/detail?id=" + id;
         BufferedReader r0 = client.runCommand(str);
@@ -49,7 +48,7 @@ public class Playlist {
      * @author chsungyesuzuki
      * @since 1.0.2
      */
-    public String[] getTrackIds(){
+    public final String[] getTrackIds(){
         if(jsonObject==null){
             get();
         }
