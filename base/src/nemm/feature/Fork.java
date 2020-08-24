@@ -18,48 +18,38 @@ import java.io.IOException;
  * @since 0.0.0
  * @author chsungyesuzuki
  */
-public final class Fork implements Feature {
+public final class Fork implements Feature{
     /**
      * implementation.
      * @since 0.0.0
      * @param splittedCmd splitted cmd.
      */
-    public void execute(String[] splittedCmd) {
-        if(splittedCmd.length != 3 && splittedCmd.length != 4) {
-            throw new IllegalArgumentException("The correct grammar of \"fork\" is: \"fork from to [description]\"");
+    public void execute(String[]splittedCmd){
+        if(splittedCmd.length!=3&&splittedCmd.length!=4){
+            throw new IllegalArgumentException("Wrong syntax, type help fork to help");
         }
-        String from = splittedCmd[1];
-        String to = splittedCmd[2];
-        HttpClient client = Main.client;
-        try {
-            BufferedReader reader = client.runCommand("playlist/create?name=" + to);
-            assert reader != null;
-            JsonElement e = JsonParser.parseReader(reader);
-            JsonObject o = e.getAsJsonObject();
-            JsonPrimitive p = o.getAsJsonPrimitive("id");
-            String s = p.getAsString();
-            if(splittedCmd.length == 3) {
-                client.runCommand("playlist/desc/update?id=" + s + "&desc=generated+by+nemm");
-            } else {
-                client.runCommand("playlist/desc/update?id=" + s + "&desc=" + splittedCmd[3]);
+        String from=splittedCmd[1];
+        String to=splittedCmd[2];
+        HttpClient client=Main.client;
+        try{
+            Playlist targetPlaylist;
+            if(splittedCmd.length==4){
+                String description=splittedCmd[3];
+                targetPlaylist=Playlist.create(to,description);
+            }else{
+                targetPlaylist=Playlist.create(to);
             }
             Playlist pl=new Playlist(from);
-            String[] trackIds = pl.getTrackIds();
-            StringBuilder com = new StringBuilder("playlist/tracks?op=add&pid=" + s + "&tracks=");
-            for (String trackId : trackIds) {
-                com.append(trackId).append(",");
-            }
-            com = new StringBuilder(com.substring(0, com.length() - 1));
-            client.runCommand(com.toString());
+            String[]trackIds=pl.getTrackIds();
+            targetPlaylist.addTracks(trackIds);
             System.out.println("Successfully forked!");
-            reader.close();
         }
-        catch (No200Exception e) {
+        catch(No200Exception e){
             System.err.println(e.response);
             System.err.println(e.response.headers());
             System.err.println(e.response.body());
             throw e;
-        } catch (IllegalStateException | NullPointerException | IOException e){
+        }catch(IllegalStateException|NullPointerException|IOException e){
             e.printStackTrace();
         }
     }

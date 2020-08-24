@@ -1,5 +1,5 @@
 package nemm.feature;
 
-public interface Feature {
-    void execute(String[] splittedCmd);
+@FunctionalInterface public interface Feature{
+    void execute(String[]splittedCmd);
 }

@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @since 0.0.0
  * @author chsungyesuzuki
  */
-public class Main {
+public class Main{
     /**
      * The http client the program uses.
      * @since 0.0.0
@@ -24,12 +24,12 @@ public class Main {
      * @param args nothing to say.
      * @since 0.0.0
      */
-    public static void main(String[] args) {
-        client = HttpClient.INSTANCE;
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String cmd = scanner.nextLine();
-            String[] splittedCmd = cmd.split(" ");
+    public static void main(String[]args){
+        client=HttpClient.INSTANCE;
+        Scanner scanner=new Scanner(System.in);
+        while(true){
+            String cmd=scanner.nextLine();
+            String[]splittedCmd=cmd.split(" ");
             FeatureExecutor.execute(splittedCmd);
         }
     }
