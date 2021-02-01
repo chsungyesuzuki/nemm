@@ -22,19 +22,21 @@ public final class Fork implements Feature{
     /**
      * implementation.
      * @since 0.0.0
-     * @param splittedCmd splitted cmd.
+     * @param splitCmd split cmd.
      */
-    public void execute(String[]splittedCmd){
-        if(splittedCmd.length!=3&&splittedCmd.length!=4){
+    public void execute(String[]splitCmd){
+        executep2p(splitCmd);
+    }
+    private void executep2p(String[]splitCmd){
+        if(splitCmd.length!=3&&splitCmd.length!=4){
             throw new IllegalArgumentException("Wrong syntax, type help fork to help");
         }
-        String from=splittedCmd[1];
-        String to=splittedCmd[2];
-        HttpClient client=Main.client;
+        String from=splitCmd[1];
+        String to=splitCmd[2];
         try{
             Playlist targetPlaylist;
-            if(splittedCmd.length==4){
-                String description=splittedCmd[3];
+            if(splitCmd.length==4){
+                String description=splitCmd[3];
                 targetPlaylist=Playlist.create(to,description);
             }else{
                 targetPlaylist=Playlist.create(to);

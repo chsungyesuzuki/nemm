@@ -16,21 +16,21 @@ public final class Login implements Feature{
     /**
      * implementation.
      * @since 0.0.0
-     * @param splittedCmd splitted cmd.
+     * @param splitCmd split cmd.
      */
-    public void execute(String[]splittedCmd){
+    public void execute(String[]splitCmd){
         try{
-            if(splittedCmd[1].equals("phone")){
-                phone(splittedCmd[2],splittedCmd[3]);
+            if(splitCmd[1].equals("phone")){
+                phone(splitCmd[2],splitCmd[3]);
             }
-            else if(splittedCmd[2].equals("email")){
-                email(splittedCmd[2],splittedCmd[3]);
+            else if(splitCmd[2].equals("email")){
+                email(splitCmd[2],splitCmd[3]);
             }
             else throw new IllegalArgumentException("Wrong syntax, type help login to help");
         }catch(ArrayIndexOutOfBoundsException e){
             throw new IllegalArgumentException("Wrong syntax, type help login to help");
         }
-        System.out.println("Successfully loggedin!");
+        System.out.println("Successfully logged in!");
     }
 
     private static void email(String email,String password){

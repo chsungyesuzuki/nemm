@@ -12,17 +12,18 @@ public final class Help implements Feature{
         System.out.println("\"fork\" to fork playlist.");
         System.out.println("\"login\" to login.");
         System.out.println("\"exit\" to exit the program.");
+        System.out.println("\"setDefaultDescription\" to set default description of the playlist created by nemm.");
     }
     /**
      * implementation.
      * @since 0.0.0
-     * @param splittedCmd useless.
+     * @param splitCmd useless.
      */
-    public void execute(String[]splittedCmd){
-        if(splittedCmd.length==1){
+    public void execute(String[]splitCmd){
+        if(splitCmd.length==1){
             defaultHelp();
         }else{
-            switch(splittedCmd[1]){
+            switch(splitCmd[1]){
                 case"help"->{
                     System.out.println("SYNOPSIS:");
                     System.out.println("\thelp [command]");
@@ -50,6 +51,12 @@ public final class Help implements Feature{
                 case"exit"->{
                     System.out.println("SYNOPSIS:");
                     System.out.println("\texit");
+                }
+                case"setDefaultDescription"->{
+                    System.out.println("SYNOPSIS:");
+                    System.out.println("\tsetDefaultDescription desc");
+                    System.out.println("OPTIONS:");
+                    System.out.println("\tdesc - the new default description you want to set");
                 }
                 default->defaultHelp();
             }

@@ -8,10 +8,10 @@ package nemm.feature;
 public final class Exit implements Feature{
     /**
      * nts
-     * @param splittedCmd nts, unused
+     * @param splitCmd nts, unused
      * @since 1.0.0
      */
-    public void execute(String[]splittedCmd){
+    public void execute(String[] splitCmd){
         System.exit(0);
     }
 }

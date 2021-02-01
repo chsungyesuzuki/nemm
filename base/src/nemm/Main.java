@@ -27,10 +27,10 @@ public class Main{
     public static void main(String[]args){
         client=HttpClient.INSTANCE;
         Scanner scanner=new Scanner(System.in);
-        while(true){
-            String cmd=scanner.nextLine();
-            String[]splittedCmd=cmd.split(" ");
-            FeatureExecutor.execute(splittedCmd);
+        while(true) {
+            String cmd = scanner.nextLine();
+            String[] splitCmd = cmd.split(" ");
+            FeatureExecutor.execute(splitCmd);
         }
     }
 }
