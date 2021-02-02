@@ -32,7 +32,7 @@ public class Playlist{
      * id
      * @since 1.0.5
      */
-    public final String id;
+    private final String id;
 
     private JsonObject jsonObject;
     private static String defaultDescription="generated+by+nemm";

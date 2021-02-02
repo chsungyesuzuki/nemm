@@ -15,16 +15,10 @@
 //    along with Foobar.  If not, see <https://www.gnu.org/licenses/>.
 package nemm.feature;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import nemm.Main;
+import nemm.core.Album;
 import nemm.core.Playlist;
-import nemm.http.HttpClient;
 import nemm.http.exception.No200Exception;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
@@ -40,24 +34,27 @@ public final class Fork implements Feature{
      * @param splitCmd split cmd.
      */
     public void execute(String[]splitCmd){
-        executep2p(splitCmd);
-    }
-    private void executep2p(String[]splitCmd){
-        if(splitCmd.length!=3&&splitCmd.length!=4){
+        if(splitCmd.length!=4&&splitCmd.length!=5){
             throw new IllegalArgumentException("Wrong syntax, type help fork to help");
         }
-        String from=splitCmd[1];
-        String to=splitCmd[2];
+        String from=splitCmd[2];
+        String to=splitCmd[3];
         try{
             Playlist targetPlaylist;
-            if(splitCmd.length==4){
-                String description=splitCmd[3];
+            if(splitCmd.length==5){
+                String description=splitCmd[4];
                 targetPlaylist=Playlist.create(to,description);
             }else{
                 targetPlaylist=Playlist.create(to);
             }
-            Playlist pl=new Playlist(from);
-            String[]trackIds=pl.getTrackIds();
+            String[]trackIds;
+            if(splitCmd[1].equals("album")){
+                trackIds=executea2p(from);
+            }else if(splitCmd[2].equals("playlist")){
+                trackIds=executep2p(from);
+            }else{
+                throw new IllegalArgumentException("Wrong syntax, type help fork to help");
+            }
             targetPlaylist.addTracks(trackIds);
             System.out.println("Successfully forked!");
         }
@@ -69,5 +66,13 @@ public final class Fork implements Feature{
         }catch(IllegalStateException|NullPointerException|IOException e){
             e.printStackTrace();
         }
+    }
+    private String[]executep2p(String from)throws IOException{
+        Playlist pl=new Playlist(from);
+        return pl.getTrackIds();
+    }
+    private String[]executea2p(String from)throws IOException{
+        Album al=new Album(from);
+        return al.getTrackIds();
     }
 }
