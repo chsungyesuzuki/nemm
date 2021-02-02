@@ -16,14 +16,15 @@
 package nemm.core;
 
 import com.google.gson.*;
+import nemm.Main;
 import nemm.http.HttpClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 public class Album {
-    private String id;
-    private HttpClient client;
+    final private String id;
+    final static private HttpClient client=Main.client;
     private JsonObject jsonObject;
     public Album(String id){
         this.id=id;

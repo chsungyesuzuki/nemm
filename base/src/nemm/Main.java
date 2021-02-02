@@ -40,13 +40,17 @@ public class Main{
      * @since 0.0.0
      */
     public static void main(String[]args){
-        printLicense();
-        client=HttpClient.INSTANCE;
-        Scanner scanner=new Scanner(System.in);
-        while(true) {
-            String cmd = scanner.nextLine();
-            String[] splitCmd = cmd.split(" ");
-            FeatureExecutor.execute(splitCmd);
+        try {
+            printLicense();
+            client = HttpClient.INSTANCE;
+            Scanner scanner = new Scanner(System.in);
+            while(true){
+                String cmd = scanner.nextLine();
+                String[] splitCmd = cmd.split(" ");
+                FeatureExecutor.execute(splitCmd);
+            }
+        }catch(Throwable e){
+            e.printStackTrace();
         }
     }
     private static void printLicense() {

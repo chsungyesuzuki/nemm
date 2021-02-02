@@ -50,7 +50,7 @@ public final class Fork implements Feature{
             String[]trackIds;
             if(splitCmd[1].equals("album")){
                 trackIds=executea2p(from);
-            }else if(splitCmd[2].equals("playlist")){
+            }else if(splitCmd[1].equals("playlist")){
                 trackIds=executep2p(from);
             }else{
                 throw new IllegalArgumentException("Wrong syntax, type help fork to help");
