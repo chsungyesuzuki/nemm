@@ -47,9 +47,10 @@ public final class Help implements Feature{
                 }
                 case"fork"->{
                     System.out.println("SYNOPSIS:");
-                    System.out.println("\tfork origin_id target_name [description]");
+                    System.out.println("\tfork album origin_id target_name [description]");
+                    System.out.println("\tfork playlist origin_id target_name [description]");
                     System.out.println("OPTIONS:");
-                    System.out.println("\torigin_id - origin playlist id");
+                    System.out.println("\torigin_id - origin album/playlist id");
                     System.out.println("\ttarget_name - target playlist name");
                     System.out.println("\tdescription - target playlist's description");
                     System.out.println("\t\tplease replace ' ' with '+' in description.");

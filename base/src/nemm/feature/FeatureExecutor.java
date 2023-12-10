@@ -35,7 +35,7 @@ public final class FeatureExecutor{
             case"login"->new Login();
             case"exit"->new Exit();
             case"setDefaultDescription"->new SetDefaultDescription();
-            default->throw new IllegalArgumentException();
+            default->throw new IllegalArgumentException("unknown command. type help to get help.");
         };
         try{
             feature.execute(splitCmd);

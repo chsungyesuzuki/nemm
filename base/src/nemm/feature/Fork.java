@@ -20,6 +20,7 @@ import nemm.core.Playlist;
 import nemm.http.exception.No200Exception;
 
 import java.io.IOException;
+import java.net.http.HttpTimeoutException;
 
 /**
  * fork feature.
@@ -55,6 +56,7 @@ public final class Fork implements Feature{
             }else{
                 throw new IllegalArgumentException("Wrong syntax, type help fork to help");
             }
+            Thread.sleep(1000);
             targetPlaylist.addTracks(trackIds);
             System.out.println("Successfully forked!");
         }
@@ -63,7 +65,7 @@ public final class Fork implements Feature{
             System.err.println(e.response.headers());
             System.err.println(e.response.body());
             throw e;
-        }catch(IllegalStateException|NullPointerException|IOException e){
+        }catch(IllegalStateException|NullPointerException|IOException|InterruptedException e){
             e.printStackTrace();
         }
     }

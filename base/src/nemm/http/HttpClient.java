@@ -64,7 +64,7 @@ public class HttpClient{
             if(cookie==0){
                 cookie=System.currentTimeMillis();
             }
-            File ifile=new File("D:/temp/"+cookie);
+            File ifile=new File("/home/chsungyesuzuki/temp/"+cookie);
             cmd="http://localhost:3000/"+cmd;
             URI playlist=new URI(cmd);
             HttpRequest.Builder rBuilder=HttpRequest.newBuilder(playlist);

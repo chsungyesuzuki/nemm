@@ -21,6 +21,10 @@ import nemm.Main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Playlist.
@@ -99,7 +103,9 @@ public class Playlist{
      */
     public void addTracks(String[]trackIds){
         StringBuilder com=new StringBuilder("playlist/tracks?op=add&pid="+id+"&tracks=");
-        for(String trackId:trackIds){
+        List<String> trackList= Arrays.asList(trackIds);
+        Collections.reverse(trackList);
+        for(String trackId:trackList){
             com.append(trackId).append(",");
         }
         com=new StringBuilder(com.substring(0,com.length()-1));
